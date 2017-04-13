@@ -40,7 +40,7 @@ class begin(object):
         m=makechart.chart()
         for onetime in self.times:
             m.WriteTime(onetime)
-            print(onetime)
+            #print(onetime)
         m.DrawChart()
 
 
