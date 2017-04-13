@@ -1,0 +1,7 @@
+name=input("what's your name")
+age=input("your age?")
+color=input("which color")
+food=input("food")
+txt=open('P320-2.txt','w')
+txt.write(name+"\n"+age+"\n"+color+"\n"+food)
+txt.close()
