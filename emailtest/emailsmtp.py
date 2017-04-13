@@ -5,7 +5,7 @@ import smtplib
 
 from_addr='addr'
 password='password'
-to_addr='@qq.com'
+to_addr='xxx@qq.com'
 smtp_server='smtp.163.com'
 
 msg=MIMEText('testemail','plain','utf-8')
