@@ -41,7 +41,7 @@ class begin(object):
         for onetime in self.times:
             m.WriteTime(onetime)
             #print(onetime)
-        m.DrawChart()
+        m.DrawChart(name='StartTime',title='second')
 
 
 if __name__ == '__main__':
