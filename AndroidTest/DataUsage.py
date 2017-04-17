@@ -24,13 +24,16 @@ class Start(object):
         return self.datalist
 
 class begin(object):
-    def __init__(self,second=0):
+    def __init__(self,second=1):
         self.second=second
-        self.n=1
         self.s = Start()
         self.datalist=[]
     def RunForTimes(self):
-        self.s.DataUsage()
+        while self.second>0:
+            self.s.DataUsage()
+            time.sleep(1)
+            print(self.second)
+            self.second-=1
     def StopRun(self):
         self.n=0
         self.datalist=self.s.FindData()
@@ -44,10 +47,7 @@ class begin(object):
             l-=1
         c.DrawChart(name='DataUsage',title='bit')
 if __name__ == '__main__':
-    b=begin(10)
-    b.RunForTimes()
-    b.RunForTimes()
-    b.RunForTimes()
+    b=begin(5)
     b.RunForTimes()
     b.StopRun()
     b.RecordCSV()
