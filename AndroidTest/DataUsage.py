@@ -34,8 +34,6 @@ class begin(object):
             time.sleep(1)
             print(self.second)
             self.second-=1
-    def StopRun(self):
-        self.n=0
         self.datalist=self.s.FindData()
     def RecordCSV(self):
         c=makechart.chart()
@@ -49,5 +47,4 @@ class begin(object):
 if __name__ == '__main__':
     b=begin(5)
     b.RunForTimes()
-    b.StopRun()
     b.RecordCSV()
