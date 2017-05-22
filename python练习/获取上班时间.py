@@ -1,9 +1,11 @@
-import sys
+import sys,os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
-from python练习 import 时间
 import time
+#sys.path.append('\\'.join(os.getcwd().split('\\')[:-1]))
+sys.path.append('\\'.join(sys.path[0].split('\\')[:-1]))
+from python练习 import 时间
 
 driver=webdriver.PhantomJS()
 #mainhandle=driver.current_window_handle  #获得主页句柄
@@ -56,13 +58,13 @@ driver.close()
 print('上班时间为：'+str(时间.totime(time)))
 
 # timelist=[930,1000,1100,1200,1400,1300,1453]
-timelist.append(1150)
+timelist.append(1200)
 timelist=sorted(timelist)
 
-for i in range(1,5):
+for i in range(1,8):
     try:
-        if timelist[timelist.index(1150)+i+1]-timelist[timelist.index(1150)+i]>15:
-            print('当天吃饭时间为 ：'+str(时间.totime(timelist[timelist.index(1150)+i]))+' - '+str(时间.totime(timelist[timelist.index(1150)+i+1])))
+        if timelist[timelist.index(1200)+i+1]-timelist[timelist.index(1200)+i]>15:
+            print('当天吃饭时间为 ：'+str(时间.totime(timelist[timelist.index(1200)+i]))+' - '+str(时间.totime(timelist[timelist.index(1200)+i+1])))
             break
     except:
         pass
