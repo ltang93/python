@@ -3,8 +3,8 @@ import os,shutil
 start='1767'
 end='HEAD'
 svnurl='http://10.2.2.152/svnswt/swt_cms/CODE'
-inurl=r'D:\jenkins\workspace\swt_cms\target\swt_cms-1.0.0'
-outurl=r'C:\Users\wangmeng_c\Desktop\swt_cms\target\swt_cms-1.0.0'
+inurl=r'D://jenkins/workspace/swt_cms/target/swt_cms-1.0.0'
+outurl=r'C://Users/wangmeng_c/Desktop/swt_cms/target/swt_cms-1.0.0'
 # cmd='svn diff -r   1767:HEAD --summarize http://10.2.2.152/svnswt/swt_cms/CODE'
 if not os.path.isdir(outurl):
     os.makedirs(outurl)
