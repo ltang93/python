@@ -26,6 +26,22 @@ def CsvLoadAnswer(filesrc,num):
             if(row['序号']==str(num)):
                 return row['答案']
 
+def LoadQuestion(filename,num,filenum):
+    title = CsvLoadTitle(filename, num)
+    if filenum == 1 or filenum == 2:
+        if filenum == 1:
+            title = '(单选)' + title
+        elif filenum == 2:
+            title = '(多选)' + title
+        options = CsvLoadOption(filename, num)
+        i = 0
+        for option in options:
+            option = str(option).replace(' ', '')
+            title = title + '\n' + chr(65 + i) + '. ' + option
+            i += 1
+    else:
+        title = '(判断题,1=对，0=错)' + title
+
 def guess(filenamelist,numlist):
     while (1):
         filenum = random.randint(1, 3)
@@ -45,20 +61,7 @@ def guess(filenamelist,numlist):
             # num = random.randint(1, 598)
             num=random.randint(1,numlist[2])
 
-        title = CsvLoadTitle(filename, num)
-        if filenum == 1 or filenum == 2:
-            if filenum == 1:
-                title = '(单选)' + title
-            elif filenum == 2:
-                title = '(多选)' + title
-            options = CsvLoadOption(filename, num)
-            i = 0
-            for option in options:
-                option = str(option).replace(' ', '')
-                title = title + '\n' + chr(65 + i) + '. ' + option
-                i += 1
-        else:
-            title = '(判断题,1=对，0=错)' + title
+        title=LoadQuestion(filename,num,filenum)
         print(title)
         print('请输入你的回答')
         useranswer = input()
@@ -88,7 +91,7 @@ def guess(filenamelist,numlist):
                 errorfile.write(str(filenum) + ',' + str(num))
                 errorfile.write('\n')
         print('\n')
-
+        AbchinaErrTrain.sortCsv()
 
 if __name__ == '__main__':
     guess(filenamelist=['2017-单选.csv','2017-多选.csv','2017-判断.csv'],numlist=[807,599,598])
