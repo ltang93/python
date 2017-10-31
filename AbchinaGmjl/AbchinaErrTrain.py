@@ -2,7 +2,7 @@ import sys,os
 sys.path.append('\\'.join(sys.path[0].split('\\')[:-1]))
 
 
-def sortCsv():
+def sortCsv(dele=False,filenum=0,num=0):
     err1, err2, err3 = set([]), set([]), set([])
     fi1, fi2, fi3 = set([]), set([]), set([])
     if os.path.exists('error.csv'):
@@ -18,6 +18,7 @@ def sortCsv():
             list(err2).sort()
             list(err3).sort()
             print(err1,err2,err3)
+        os.remove('error.csv')
     if os.path.exists('finish.csv'):
         with open('finish.csv', 'r') as finishfile:
 
@@ -28,13 +29,20 @@ def sortCsv():
                     fi2.add(int(line.split(',')[1]))
                 elif line.split(',')[0] == '3':
                     fi3.add(int(line.split(',')[1]))
+            if dele==True:
+                if filenum==1:
+                    err1.remove(num)
+                elif filenum==2:
+                    err2.remove(num)
+                elif filenum==3:
+                    err3.remove(num)
             list(fi1).sort()
             list(fi2).sort()
             list(fi3).sort()
             print(fi1,fi2,fi3)
+        os.remove('finish.csv')
 
-    os.remove('error.csv')
-    os.remove('finish.csv')
+
     for i in range(3):
         if i ==0:
             for item in err1:
