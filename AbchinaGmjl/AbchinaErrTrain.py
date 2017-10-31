@@ -17,7 +17,7 @@ def sortCsv(dele=False,filenum=0,num=0):
             list(err1).sort()
             list(err2).sort()
             list(err3).sort()
-            print(err1,err2,err3)
+            # print(err1,err2,err3)
         os.remove('error.csv')
     if os.path.exists('finish.csv'):
         with open('finish.csv', 'r') as finishfile:
@@ -39,7 +39,7 @@ def sortCsv(dele=False,filenum=0,num=0):
             list(fi1).sort()
             list(fi2).sort()
             list(fi3).sort()
-            print(fi1,fi2,fi3)
+            # print(fi1,fi2,fi3)
         os.remove('finish.csv')
 
 
@@ -73,4 +73,4 @@ def sortCsv(dele=False,filenum=0,num=0):
                     finishfile.write('\n')
 
 if __name__ =='__main__':
-    sortCsv()
+    sortCsv(dele=True, filenum=1, num=674)
