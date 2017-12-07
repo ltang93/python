@@ -1,4 +1,4 @@
-import csv,random,sys,linecache
+import csv,random,sys,linecache,os
 sys.path.append('\\'.join(sys.path[0].split('\\')[:-1]))
 from AbchinaGmjl import AbchinaErrTrain
 
@@ -51,7 +51,7 @@ def answerQuestion(filename,num,filenum):
     with open('finish.csv', 'a') as finishfile:
         finishfile.write(str(filenum) + ',' + str(num))
         finishfile.write('\n')
-    if useranswer.upper() == answer.upper():
+    if useranswer.upper() == answer.replace(' ','').upper():
         print('回答正确')
         with open('right.csv', 'a') as rightfile:
             rightfile.write(str(filenum) + ',' + str(num))
@@ -108,6 +108,9 @@ def guess(filenamelist,numlist):
 
 def exercise(filenamelist):
     while(1):
+        if not os.path.exists('error.csv'):
+            print('没有错题可以练习了！')
+            return
         with open('error.csv') as errorfile:
             count = len(errorfile.readlines())
             i =random.randint(1,count)
@@ -134,7 +137,8 @@ def exercise(filenamelist):
         if result == 0:#wrong
             AbchinaErrTrain.sortCsv()
         elif result == 1:#right
-            AbchinaErrTrain.sortCsv(dele=True,filenum=filenum,num=num)
+            AbchinaErrTrain.sortCsv(dele=True,filenum=int(filenum),num=int(num))
+            linecache.updatecache('error.csv')
 
 if __name__ == '__main__':
     print('请选择，练习输入1，复习输入2  ：')
@@ -142,7 +146,10 @@ if __name__ == '__main__':
     if extype=='1':
         guess(filenamelist=['2017-单选.csv','2017-多选.csv','2017-判断.csv'],numlist=[807,599,598])
     elif extype=='2':
-        exercise(filenamelist=['2017-单选.csv','2017-多选.csv','2017-判断.csv'])
+        if os.path.exists('error.csv'):
+            exercise(filenamelist=['2017-单选.csv','2017-多选.csv','2017-判断.csv'])
+        else:
+            print('请先练习！')
 '''
     def __init__(self):
         self.filename = '2017-单选.csv'
